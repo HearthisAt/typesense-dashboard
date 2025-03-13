@@ -11,7 +11,7 @@
           @click="toggleLeftDrawer"
         />
 
-        <q-toolbar-title> Typesense Dashboard </q-toolbar-title>
+        <q-toolbar-title> evolverGROUP Typesense Dashboard </q-toolbar-title>
 
         <q-btn padding="xs md" flat dense no-caps>
           {{ store.loginData?.node.host }}
