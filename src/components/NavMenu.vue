@@ -118,20 +118,6 @@
     <q-item
       v-ripple
       clickable
-      :to="`/collection/${currentCollection?.name}/curations`"
-      exact
-      :disable="!currentCollection"
-    >
-      <q-item-section avatar>
-        <q-icon name="sym_s_low_priority" />
-      </q-item-section>
-
-      <q-item-section> Curations </q-item-section>
-    </q-item>
-
-    <q-item
-      v-ripple
-      clickable
       :to="`/collection/${currentCollection?.name}/schema`"
       exact
       :disable="!currentCollection"

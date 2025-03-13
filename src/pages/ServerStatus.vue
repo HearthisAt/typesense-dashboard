@@ -81,54 +81,6 @@
             </div>
           </q-card-section>
         </q-card>
-        <q-card flat bordered class="q-mb-md">
-          <q-card-section>
-            <div class="text-h5 q-mb-md">Operations</div>
-            <div class="text-subtitle1 q-pt-md">Cache</div>
-            <p>
-              Responses of search requests that are sent with use_cache parameter are cached in a
-              LRU cache.
-            </p>
-            <q-btn
-              label="Clear Search Cache"
-              color="accent"
-              unelevated
-              size="md"
-              padding="sm lg"
-              @click="store.clearCache"
-            />
-            <div class="text-subtitle1 q-pt-md">Slow Request Log</div>
-            <p>Slow requests are logged to the primary log file, with the prefix SLOW REQUEST</p>
-            <q-input
-              v-model.number="slowQueryThreshold"
-              outlined
-              label="Threshold (ms)"
-              type="number"
-              hint="Enable logging of requests that take over a defined threshold of time. (-1 to disable)"
-            >
-              <template #after>
-                <q-btn
-                  unelevated
-                  label="set"
-                  color="accent"
-                  size="md"
-                  padding="sm lg"
-                  @click="store.slowQueryThreshold(slowQueryThreshold)"
-                />
-              </template>
-            </q-input>
-            <div class="text-subtitle1 q-pt-md">Compacting the on-disk database</div>
-            <p>Recommended to run it during off-peak hours.</p>
-            <q-btn
-              label="Compact Database"
-              color="accent"
-              unelevated
-              size="md"
-              padding="sm lg"
-              @click="store.operationCompactDB"
-            />
-          </q-card-section>
-        </q-card>
       </div>
       <q-card flat bordered class="col-12 col-md-3 offset-md-1 q-mb-md">
         <q-card-section>
@@ -179,7 +131,6 @@ import prettyBytes from 'pretty-bytes';
 const store = useNodeStore();
 
 const refreshInterval = ref<number | undefined>(undefined);
-const slowQueryThreshold = ref<number>(-1);
 
 function isObject(obj: unknown) {
   return typeof obj === 'object';

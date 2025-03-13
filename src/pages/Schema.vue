@@ -5,9 +5,6 @@
         <q-icon size="md" name="sym_s_data_object" /> Schema for
         {{ store.currentCollection?.name }}
       </div>
-      <q-btn unelevated color="negative" @click="drop(store.currentCollection?.name || '')"
-        >Drop Collection</q-btn
-      >
     </div>
     <collection-ui :initial-schema="schema" primary-action-label="Update Schema" @submit="update" />
   </q-page>
@@ -15,7 +12,6 @@
 
 <script setup lang="ts">
 import { computed } from 'vue';
-import { useQuasar } from 'quasar';
 import { useNodeStore } from 'src/stores/node';
 import CollectionUi from 'components/collection/CollectionUi.vue';
 import type { CollectionCreateSchema } from 'typesense/lib/Typesense/Collections';
@@ -25,7 +21,6 @@ import type {
   CollectionUpdateSchema,
 } from 'typesense/lib/Typesense/Collection';
 
-const $q = useQuasar();
 const store = useNodeStore();
 
 const schema = computed<CollectionSchema | CollectionCreateSchema>(() => {
@@ -65,17 +60,6 @@ const schema = computed<CollectionSchema | CollectionCreateSchema>(() => {
     enable_nested_fields: false,
   };
 });
-
-function drop(name: string) {
-  $q.dialog({
-    title: 'Confirm',
-    message: `Drop ${name} and all documents?`,
-    cancel: true,
-    persistent: true,
-  }).onOk(() => {
-    void store.dropCollection(name);
-  });
-}
 
 function update(updatedSchema: CollectionUpdateSchema) {
   if (!schema.value || !schema.value.name || !schema.value.fields) {
